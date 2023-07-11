@@ -2,6 +2,7 @@
 import PyNUT
 from pprint import pprint
 import datetime
+import csv
 
 def setup():
     global ups
@@ -25,7 +26,9 @@ def loop():
     if upsVars !=upsVarsLast:
         dataPoint = {'date':now.strftime('%Y-%m-%d'), 'time':now.strftime('%H:%M:%S')}
         dataPoint.update(upsVars)
-        print(dataPoint)
+        with open('/home/pi/depotacdata.csv', 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(dataPoint)
     upsVarsLast = upsVars
     return
 
