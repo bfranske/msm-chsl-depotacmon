@@ -26,7 +26,7 @@ def loop():
     if upsVars !=upsVarsLast:
         dataPoint = {'date':now.strftime('%Y-%m-%d'), 'time':now.strftime('%H:%M:%S')}
         dataPoint.update(upsVars)
-        with open('/home/pi/depotacdata.csv', 'w') as f:
+        with open('/home/pi/depotacdata.csv', 'wa') as f:
             writer = csv.writer(f)
             writer.writerow(dataPoint.values())
     upsVarsLast = upsVars
