@@ -28,7 +28,7 @@ def loop():
         dataPoint.update(upsVars)
         with open('/home/pi/depotacdata.csv', 'w') as f:
             writer = csv.writer(f)
-            writer.writerow(dataPoint)
+            writer.writerow(dataPoint.values())
     upsVarsLast = upsVars
     return
 
