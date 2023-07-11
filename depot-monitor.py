@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import PyNUT
 from pprint import pprint
+import datetime
 
 def setup():
     global ups
@@ -18,10 +19,13 @@ def loop():
     upsVars = {}
     allUpsVars= ups.GetUPSVars(ups='chsl-depot-rack')
     allUpsVars = {y.decode('ascii'): allUpsVars.get(y).decode('ascii') for y in allUpsVars.keys()}
+    now = datetime.datetime.now()
     for variable in toMonitor:
         upsVars[variable] = allUpsVars[variable]
     if upsVars !=upsVarsLast:
-        print(upsVars)
+        dataPoint = {'date':now.strftime('%Y-%m-%d'), 'time':now.strftime('%H:%M:%S')}
+        dataPoint.update(upsVars)
+        print(dataPoint)
     upsVarsLast = upsVars
     return
 
