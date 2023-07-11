@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import PyNUT
+from pprint import pprint
 
 def setup():
     global ups
@@ -17,10 +18,12 @@ def loop():
     upsVars = {}
     allUpsVars= ups.GetUPSVars(ups='chsl-depot-rack')
     allUpsVars = {y.decode('ascii'): upsVars.get(y).decode('ascii') for y in upsVars.keys()}
+    pprint (allUpsVars)
     for variable in toMonitor:
         upsVars[variable] = allUpsVars[variable]
     if upsVars !=upsVarsLast:
         print(upsVars)
+    upsVarsLast = upsVars
     return
 
 def main():
