@@ -1,4 +1,4 @@
-#!/usr/run/python3
+#!/usr/bin/python3
 import PyNUT
 
 def setup():
