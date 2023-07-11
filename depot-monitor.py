@@ -17,8 +17,7 @@ def loop():
     allUpsVars = {}
     upsVars = {}
     allUpsVars= ups.GetUPSVars(ups='chsl-depot-rack')
-    allUpsVars = {y.decode('ascii'): upsVars.get(y).decode('ascii') for y in upsVars.keys()}
-    pprint (allUpsVars)
+    allUpsVars = {y.decode('ascii'): allUpsVars.get(y).decode('ascii') for y in allUpsVars.keys()}
     for variable in toMonitor:
         upsVars[variable] = allUpsVars[variable]
     if upsVars !=upsVarsLast:
